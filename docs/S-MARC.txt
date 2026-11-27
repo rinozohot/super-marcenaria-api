@@ -1,0 +1,115 @@
+S-MARC
+Super Marcenaria
+Projeto iniciado em 2026
+Criado e pensado por: Enzo Ryan Barbosa Ferreira
+
+
+INTRODUÇÃO
+
+O Projeto Super-Marcenaria (S-Marc) é uma plataforma web voltada à digitalização comercial, exibição de catálogos e automação de atendimento para o setor de móveis sob medida e planejados, concebida a partir do ecossistema moveleiro de Alto Paraná (PR). O projeto une desenvolvimento web full-stack, integração de APIs, webhooks e gateways de pagamento para resolver gargalos reais entre marceneiros e consumidores finais, ao mesmo tempo em que serve como peça central de portfólio técnico de nível Desenvolvedor Júnior no GitHub.
+
+Para equilibrar profundidade técnica com viabilidade de entrega, a arquitetura do sistema é dividida em duas fases evolutivas:
+
+- Versão 1 (V1 — Single-Tenant): sistema dedicado a uma única marcenaria, concentrando catálogo interativo, personalização básica de acabamentos, carrinho/orçamento, autenticação de usuários, prova social (curtidas/avaliações), cobrança automatizada de sinal ou compra via API de pagamento e webhooks de acompanhamento.
+- Versão 2 (V2 — Multi-Tenant / Super-Catálogo): evolução da mesma base de código para operar como um hub regional unificando diversas marcenarias de Alto Paraná e cidades vizinhas, mantendo o escopo enxuto e focado no setor moveleiro, sem a complexidade desnecessária de um marketplace genérico como Amazon ou Mercado Livre.
+
+
+BUSCA DE DADOS E REFERÊNCIAS DE MERCADO
+
+A concepção do S-Marc apoia-se no cruzamento entre o potencial produtivo local de Alto Paraná e benchmarks digitais já validados no Brasil:
+
+- Polo Moveleiro Local (Alto Paraná - PR): o município é reconhecido regionalmente pela forte concentração de marcenarias e indústrias de móveis sob medida, com mais de uma dezena de estabelecimentos ativos na cidade (como Incomap Móveis, 3M Marcenaria, Alfa Móveis, Marcenaria Frotté, Beldan e TOPP Marcenaria), operando majoritariamente como centros de fabricação e distribuição física.
+- Benchmark Nacional (marcena.com.br): demonstra a viabilidade da venda de móveis sob medida 100% online por meio de configuração paramétrica (escolha de medidas, cores e padrões de MDF como Branco, Cumaru, Louro Freijó, Pau Ferro e Lino Piombo), cálculo de preço em tempo real, pagamento integrado via PIX ou cartão e manuais personalizados.
+
+Lacuna Competitiva Regional: enquanto plataformas nacionais atendem com módulos padronizados e frete interestadual diluído, o consumidor do Noroeste do Paraná (Alto Paraná, Paranavaí, Nova Esperança e Maringá) busca proximidade para medição técnica, personalização real e frete regional rápido, demanda hoje não atendida por uma vitrine digital unificada.
+
+
+SITUAÇÃO OBSERVADA
+
+A análise da operação atual das marcenarias na região de Alto Paraná evidencia um contraste claro entre alta capacidade fabril e baixa maturidade digital:
+
+- Presença Digital Fragmentada: a maioria das marcenarias depende de indicação presencial, perfis desatualizados em redes sociais ou listas telefônicas básicas, sem um catálogo estruturado por ambiente, material ou faixa de investimento.
+- Funil de Atendimento Manual e Lento: o primeiro contato ocorre de forma desestruturada via WhatsApp; o cliente envia referências soltas, o marceneiro precisa coletar dados básicos manualmente entre uma produção e outra e muitos orçamentos esfriam por demora na resposta.
+- Falta de Diferenciação e Prova Social: sem um ambiente próprio que organize portfólio entregue, curtidas, avaliações e prazos médios, as marcenarias locais acabam competindo quase exclusivamente por preço ou proximidade física.
+- Ausência de Recorrência: o modelo tradicional encerra o relacionamento na entrega do móvel, desperdiçando oportunidades de assinatura de manutenção preventiva, ajustes de ferragens ou expansão gradual de ambientes.
+
+
+DESCRIÇÃO DO PROBLEMA
+
+Problema Central: as marcenarias de Alto Paraná e região possuem sólida capacidade de fabricação de móveis sob medida, mas carecem de uma plataforma digital que estruture seus catálogos, automatize a triagem e o pagamento de pedidos e organize a entrega regional de forma escalável.
+
+
+METODOLOGIA DE DESENVOLVIMENTO
+
+O projeto seguirá uma abordagem iterativa e incremental, estruturada em quatro etapas técnicas para garantir código limpo e documentação exemplar no GitHub:
+
+1. Engenharia de Requisitos e Modelagem UML: consolidação das regras de negócio e criação dos diagramas de Casos de Uso, Classes, Sequência (fluxo de checkout e webhook) e Modelo Entidade-Relacionamento (DER) antes da codificação.
+2. Construção do Núcleo V1 (Single-Tenant): desenvolvimento da API REST, autenticação com controle de acesso por perfil (Cliente, Marceneiro/Admin), catálogo com curtidas e filtros, carrinho/orçamento e checkout integrado.
+3. Automação e Integrações Externas: conexão com webhooks de pagamento e fluxo de atendimento automatizado para notificação instantânea de novos pedidos e mudanças de etapa de produção (Orçamento → Produção → Entrega).
+4. Expansão V2 (Multi-Tenant) e Documentação de Portfólio: habilitação do cadastro de múltiplas marcenarias no mesmo sistema, acompanhada de documentação arquitetural, diagrama de fluxo, coleção de testes de API e deploy funcional.
+
+
+STAKEHOLDERS PRIMÁRIOS
+
+- Visitante
+- Cliente comum
+- Assinante do clube
+- Marceneiro/administrador
+
+
+STAKEHOLDERS SECUNDÁRIOS
+
+- Serviço de Atendimento
+- Gateway de pagamento
+
+
+REGRAS DE NEGÓCIO
+
+RN01: O acompanhamento das etapas de produção deve estar disponível ao cliente.
+RN02: A produção de qualquer móvel só pode ser iniciada depois do pagamento.
+RN03: Todo produto cadastrado deve possuir dimensões padrão, material base e preço inicial.
+RN04: Um produto pode oferecer opções de materiais e cores, com acréscimos ou descontos específicos.
+RN05: Todo produto deve definir dimensões mínimas e máximas permitidas, bloqueando configurações fora da capacidade fabril.
+RN06: A cidade e o endereço comercial da marcenaria devem estar visíveis para o cliente antes da compra.
+RN07: O sistema deve revelar separadamente o valor do móvel, adicionais de material, taxas e frete regional.
+RN08: O preço final do item deve ser recalculado automaticamente no servidor sempre que o cliente alterar medidas ou materiais em relação ao padrão.
+RN09: Assinantes ativos do Clube recebem percentual de desconto automático no checkout, opção de parcelamento especial e cashback.
+
+
+REQUISITOS FUNCIONAIS
+
+RF01: Permitir cadastro, login e gestão de perfil de clientes e marceneiros.
+RF02: Permitir o cadastro de marcenarias com localização, dados de contato e raio de entrega.
+RF03: Permitir que marcenarias cadastrem e editem produtos com medidas mín/máx, materiais e prazo base.
+RF04: Exibir catálogo público com filtros por ambiente, material, marcenaria e contagem de vendas/curtidas.
+RF05: Permitir que clientes curtam/favoritem produtos do catálogo.
+RF06: Permitir que o cliente personalize medidas e materiais do móvel, exibindo preço e prazo atualizados em tempo real.
+RF07: Disponibilizar carrinho de compras com cálculo automático de frete regional por cidade/CEP.
+RF08: Processar pagamentos online (PIX/Cartão), validar confirmação via webhook e emitir comprovante ao cliente.
+RF09: Notificar automaticamente a marcenaria responsável assim que um pedido tiver o pagamento aprovado.
+RF10: Permitir que a marcenaria atualize o status do pedido.
+RF11: Permitir que clientes assinem, consultem ou cancelem o plano recorrente do Clube S-Marc, diferenciando contas comuns de assinantes.
+RF12: Disponibilizar canal de contato/atendimento direto entre cliente e marcenaria sobre o pedido ou produto.
+RF13: Permitir que o cliente avalie o produto e a marcenaria exclusivamente após o pedido constar como Entregue.
+
+
+REQUISITOS NÃO FUNCIONAIS
+
+RNF01: O sistema deve estar disponível 24 horas por dia.
+RNF02: A interface deve ser compatível com dispositivos móveis e computadores.
+RNF03: A API deve suportar múltiplos acessos e transações simultâneas sem perda de integridade no banco.
+RNF04: O sistema deve responder em até 5 segundos.
+RNF05: A interface deve ser objetiva, com feedback visual imediato no configurador e páginas de erro amigáveis.
+RNF06: Senhas devem ser armazenadas com hash criptográfico, rotas protegidas por token (JWT) e webhooks validados por assinatura.
+RNF07: Os dados transacionais devem ser armazenados em banco relacional (PostgreSQL) com integridade referencial.
+RNF08: A API deve expor documentação interativa (OpenAPI/Swagger) para facilitar testes e avaliação técnica no GitHub.
+
+
+DIAGRAMA DE CASOS DE USO
+
+O diagrama de casos de uso possui quatro atores principais: Visitante (Realizar Cadastro de Usuário, Exibir Catálogo público); Cliente Comum (Realizar Login no sistema, Personalizar Produto com extend Modificar medidas e Modificar Material, Avaliar Produto, Finalizar Compra com include Processar Pagamentos, Curtir Produto, Assinar Clube e Utilizar Carrinho de Compras); Assinante do Clube (Cancelar Clube, Utilizar benefícios do Clube e recebe herança do cliente comum); Marcenaria (Realizar Cadastro de Marcenaria, Editar Produto com os include Preencher medidas mín/máx, definir prazo de entrega base e preencher material base); Serviço de Atendimento (Notificar marcenaria e Disponibilizar canal de contato); Gateway de Pagamento (Processar Pagamentos com include Emitir comprovante).
+
+
+DIAGRAMA DE CLASSES
+
+Marcenaria (cadastrarMarcenaria, calcularFreteRegional; possui 0..* Produtos e recebe 0..* Pedidos); Usuário (cadastrar, login, validarDados; pode estar vinculado a 0..1 Marcenaria); AssinaturaClube (assinar, cancelar, aplicarDesconto; pertence a 1 Usuário do perfil Cliente); Produto (cadastrarProduto, editarProduto, calcularPrecoParametrico, incrementarCurtida; pertence a 1 Marcenaria e possui 0..* Avaliações); Pedido (adicionarItem, finalizarCompra, atualizarStatusJIT; é realizado por 1 Usuário e contém 1..* ItensPedido); ItemPedido (calcularSubtotal; referencia 1 Produto); Pagamento (gerarCobranca, processarWebhook, emitirComprovante; está vinculado a 1 Pedido e dispara 1 Notificação); Notificação (notificarMarcenaria, enviarStatusCliente; é disparada por um Pagamento ou por mudanças no status_jit do Pedido); Avaliação (registrarAvaliacao; é realizada por 1 Usuário para 1 Produto após a entrega).
