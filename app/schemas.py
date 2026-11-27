@@ -55,3 +55,54 @@ class CheckoutRequest(BaseModel):
 
 class AtualizarStatusJITRequest(BaseModel):
     novo_status: StatusPedidoJIT
+
+# --- USUÁRIOS E CLUBE S-MARC ---
+class UsuarioCreate(BaseModel):
+    nome: str
+    cpf: str
+    email: str
+    senha: str
+    telefone: str
+    endereco: str
+
+class UsuarioResponse(BaseModel):
+    id: UUID
+    nome: str
+    email: str
+    perfil: str
+
+    class Config:
+        from_attributes = True
+
+class LoginRequest(BaseModel):
+    email: str
+    senha: str
+
+class AssinarClubeRequest(BaseModel):
+    tipo_plano: str = "MENSAL_PRO"
+    valor_mensal: Decimal = Decimal("49.90")
+# --- USUÁRIOS E CLUBE S-MARC ---
+class UsuarioCreate(BaseModel):
+    nome: str
+    cpf: str
+    email: str
+    senha: str
+    telefone: str
+    endereco: str
+
+class UsuarioResponse(BaseModel):
+    id: UUID
+    nome: str
+    email: str
+    perfil: str
+
+    class Config:
+        from_attributes = True
+
+class LoginRequest(BaseModel):
+    email: str
+    senha: str
+
+class AssinarClubeRequest(BaseModel):
+    tipo_plano: str = "MENSAL_PRO"
+    valor_mensal: Decimal = Decimal("49.90")
